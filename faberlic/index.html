@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faberlic — мир возможностей | Каталог и консультации онлайн</title>
+    <meta name="description" content="Присоединяйтесь к Faberlic: актуальный каталог, персональные консультации и удобная регистрация онлайн. Оставьте заявку — мы свяжемся с вами.">
+
+    <meta property="og:title" content="Faberlic — мир возможностей">
+    <meta property="og:description" content="Каталог, консультации и регистрация онлайн. Оставьте заявку.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faberliconline37.online/">
+    <meta property="og:image" content="https://placehold.co/1200x630?text=Faberlic">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>F</text></svg>">
+
+    <style>
+           :root {
+               --brand: #c2185b;
+               --brand-dark: #8e0f42;
+               --bg: #ffffff;
+               --text: #1f2430;
+               --muted: #5b6472;
+               --soft: #fdf2f6;
+               --border: #eeeeee;
+               --radius: 14px;
+               --shadow: 0 8px 28px rgba(0,0,0,.08);
+               --container: 1100px;
+               --section-pad: 64px;
+           }
+
+           *, *::before, *::after { box-sizing: border-box }
+
+           html { scroll-behavior: smooth }
+
+           body {
+               margin: 0;
+               font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+               color: var(--text);
+               background: var(--bg);
+               line-height: 1.6;
+               -webkit-font-smoothing: antialiased;
+               text-rendering: optimizeLegibility;
+           }
+
+           img { max-width: 100%; display: block; height: auto }
+
+           a { color: var(--brand); text-decoration: none }
+           a:hover { text-decoration: underline }
+
+           .container {
+               max-width: var(--container);
+               margin: 0 auto;
+               padding: 0 20px
+           }
+
+           h1, h2, h3 { line-height: 1.25; margin: 0 0 14px }
+           h1 { font-size: clamp(28px,4vw,44px) }
+           h2 { font-size: clamp(22px,3vw,32px) }
+           h3 { font-size: 18px }
+           p { margin: 0 0 14px }
+           section { padding: var(--section-pad) 0 }
+
+           .lead {
+               font-size: 18px;
+               color: var(--muted);
+               max-width: 640px
+           }
+
+           .btn {
+               display: inline-block;
+               background: var(--brand);
+               color: #fff;
+               padding: 14px 26px;
+               border-radius: 999px;
+               font-weight: 600;
+               border: 0;
+               cursor: pointer;
+               font-size: 16px;
+               font-family: inherit;
+               transition: background .2s, transform .1s;
+               text-align: center;
+               min-height: 48px;
+           }
+           .btn:hover { background: var(--brand-dark); text-decoration: none; color: #fff }
+           .btn:active { transform: translateY(1px) }
+           .btn:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 2px }
+           .btn:disabled { opacity: .6; cursor: not-allowed }
+
+           header {
+               position: sticky;
+               top: 0;
+               z-index: 50;
+               background: #fff;
+               border-bottom: 1px solid var(--border);
+           }
+
+           .nav {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               height: 64px
+           }
+           .logo { font-weight: 700; font-size: 20px; color: var(--brand) }
+           .logo:hover { text-decoration: none }
+
+           .nav-links { display: flex; gap: 22px; font-size: 15px }
+           .nav-links a { color: var(--text) }
+           .nav-links a:hover { color: var(--brand); text-decoration: none }
+
+           @media(max-width:720px) { .nav-links { display: none } }
+
+           .hero { background: linear-gradient(135deg,var(--soft),#fff 70%) }
+           .hero-grid {
+               display: grid;
+               grid-template-columns: 1.1fr .9fr;
+               gap: 40px;
+               align-items: center;
+           }
+           .hero .lead { margin-bottom: 24px }
+
+           .hero-img {
+               aspect-ratio: 4/3;
+               border-radius: var(--radius);
+               overflow: hidden;
+               box-shadow: var(--shadow);
+               background: linear-gradient(135deg, #fdf2f6, #f8dbe6);
+               display: flex;
+               align-items: center;
+               justify-content: center;
+           }
+           .hero-img img { width: 100%; height: 100%; object-fit: cover }
+
+           @media(max-width:880px) {
+               .hero-grid { grid-template-columns: 1fr }
+               .hero-img { order: -1 }
+           }
+
+           .cards {
+               display: grid;
+               grid-template-columns: repeat(3,1fr);
+               gap: 22px;
+               margin-top: 28px
+           }
+           .card {
+               border: 1px solid var(--border);
+               border-radius: var(--radius);
+               padding: 24px;
+               box-shadow: var(--shadow);
+               background: #fff;
+               transition: transform .2s, box-shadow .2s;
+           }
+           .card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.1) }
+           .card .icon { font-size: 28px; margin-bottom: 10px; line-height: 1 }
+
+           @media(max-width:880px) { .cards { grid-template-columns: 1fr } }
+
+           .steps { background: var(--soft) }
+           .steps ol {
+               list-style: none;
+               padding: 0;
+               margin: 28px 0 0;
+               display: grid;
+               grid-template-columns: repeat(3,1fr);
+               gap: 22px;
+               counter-reset: s;
+           }
+           .steps li {
+               background: #fff;
+               border-radius: var(--radius);
+               padding: 24px;
+               box-shadow: var(--shadow);
+               counter-increment: s;
+           }
+           .steps li::before {
+               content: counter(s);
+               display: inline-flex;
+               align-items: center;
+               justify-content: center;
+               width: 36px;
+               height: 36px;
+               border-radius: 50%;
+               background: var(--brand);
+               color: #fff;
+               font-weight: 700;
+               margin-bottom: 10px;
+           }
+           .steps li strong { display: block; margin-bottom: 6px }
+           .steps li p { margin: 0; color: var(--muted) }
+
+           @media(max-width:880px) { .steps ol { grid-template-columns: 1fr } }
+
+           .form-box {
+               max-width: 560px;
+               margin: 0 auto;
+               padding: 32px;
+               border-radius: var(--radius);
+               box-shadow: var(--shadow);
+               border: 1px solid var(--border);
+               background: #fff;
+           }
+
+           label { display: block; font-size: 14px; margin: 14px 0 6px; font-weight: 600 }
+
+           input[type="text"], input[type="tel"], input[type="email"], textarea {
+               width: 100%;
+               padding: 12px 14px;
+               border: 1px solid #d6dbe3;
+               border-radius: 10px;
+               font-size: 15px;
+               font-family: inherit;
+               background: #fff;
+               color: var(--text);
+               transition: border-color .15s;
+           }
+           input:focus, textarea:focus {
+               outline: 2px solid var(--brand);
+               outline-offset: 0;
+               border-color: transparent;
+           }
+           input:invalid:not(:placeholder-shown) { border-color: var(--brand) }
+
+           .form-box .btn { width: 100%; margin-top: 18px }
+
+           .hint { font-size: 13px; color: var(--muted); margin-top: 10px }
+
+           .form-msg { display: none; margin-top: 12px; font-weight: 600 }
+           .form-msg.ok { display: block; color: #1b7f3a }
+           .form-msg.err { display: block; color: var(--brand) }
+
+           .consent-row {
+               display: flex;
+               align-items: flex-start;
+               gap: 10px;
+               margin-top: 18px;
+               padding: 12px 14px;
+               background: var(--soft);
+               border: 1px solid var(--border);
+               border-radius: 10px;
+           }
+           .consent-row input[type="checkbox"] {
+               width: 20px;
+               height: 20px;
+               margin: 2px 0 0 0;
+               flex-shrink: 0;
+               accent-color: var(--brand);
+               cursor: pointer;
+           }
+           .consent-row label {
+               margin: 0;
+               font-size: 13px;
+               font-weight: 400;
+               color: var(--muted);
+               line-height: 1.5;
+               cursor: pointer;
+           }
+           .consent-row a { font-weight: 600 }
+           .consent-row.invalid {
+               border-color: var(--brand);
+               background: #fde7ee;
+           }
+
+           details {
+               border: 1px solid var(--border);
+               border-radius: 12px;
+               padding: 16px 18px;
+               margin-bottom: 12px;
+               background: #fff;
+               transition: box-shadow .15s;
+           }
+           details[open] { box-shadow: var(--shadow) }
+           summary {
+               cursor: pointer;
+               font-weight: 600;
+               list-style: none;
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               gap: 16px;
+           }
+           summary::-webkit-details-marker { display: none }
+           summary::after {
+               content: "+";
+               color: var(--brand);
+               font-weight: 700;
+               font-size: 20px;
+               line-height: 1
+           }
+           details[open] summary::after { content: "–" }
+           details p { margin-top: 10px; color: var(--muted) }
+
+           footer {
+               background: #1f2430;
+               color: #cfd6e0;
+               padding: 40px 0 24px;
+               font-size: 14px
+           }
+           footer a { color: #fff }
+           footer a:hover { color: var(--brand); text-decoration: none }
+
+           .foot-grid {
+               display: grid;
+               grid-template-columns: 2fr 1fr 1fr;
+               gap: 30px;
+               margin-bottom: 26px
+           }
+           .foot-grid h4 { color: #fff; margin: 0 0 10px; font-size: 15px }
+           .foot-grid p { margin: 0 0 8px }
+
+           .foot-bottom {
+               border-top: 1px solid #333b4a;
+               padding-top: 16px;
+               color: #8b95a6;
+               font-size: 13px
+           }
+           @media(max-width:720px) { .foot-grid { grid-template-columns: 1fr } }
+
+           .sticky-cta {
+               display: none;
+               position: fixed;
+               left: 0;
+               right: 0;
+               bottom: 0;
+               z-index: 60;
+               background: #fff;
+               border-top: 1px solid var(--border);
+               padding: 10px 16px;
+               box-shadow: 0 -4px 16px rgba(0,0,0,.06);
+           }
+           .sticky-cta .btn { width: 100% }
+
+           @media(max-width:720px) {
+               .sticky-cta { display: block }
+               body { padding-bottom: 76px }
+           }
+
+           @media (prefers-reduced-motion: reduce) {
+               html { scroll-behavior: auto }
+               * { transition: none !important; animation: none !important }
+           }
+
+           .modal-overlay {
+               display: none;
+               position: fixed;
+               inset: 0;
+               background: rgba(15, 20, 30, .6);
+               z-index: 1000;
+               padding: 20px;
+               overflow-y: auto;
+           }
+           .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+           .modal {
+               background: #fff;
+               max-width: 760px;
+               width: 100%;
+               margin: 40px auto;
+               border-radius: var(--radius);
+               box-shadow: 0 20px 60px rgba(0,0,0,.3);
+               position: relative;
+               padding: 32px;
+               color: var(--text);
+           }
+           .modal h2 { margin-top: 0; padding-right: 40px; }
+           .modal h3 { margin-top: 24px; }
+           .modal p, .modal li { font-size: 14.5px; color: #2b3242; }
+           .modal ul { padding-left: 22px; }
+           .modal li { margin-bottom: 8px; }
+
+           .modal-close {
+               position: absolute;
+               top: 14px;
+               right: 14px;
+               width: 38px;
+               height: 38px;
+               border-radius: 50%;
+               border: 0;
+               background: var(--soft);
+               color: var(--brand);
+               font-size: 22px;
+               line-height: 1;
+               cursor: pointer;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               transition: background .15s;
+           }
+           .modal-close:hover { background: #f8dbe6; }
+           .modal-close:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 2px; }
+
+           .modal-meta {
+               font-size: 13px;
+               color: var(--muted);
+               margin-bottom: 16px;
+               padding-bottom: 12px;
+               border-bottom: 1px solid var(--border);
+           }
+           .modal .modal-footer-note {
+               margin-top: 20px;
+               padding-top: 14px;
+               border-top: 1px solid var(--border);
+               font-size: 13px;
+               color: var(--muted);
+           }
+
+           @media(max-width:600px) {
+               .modal { padding: 22px; margin: 10px auto; }
+               .modal h2 { font-size: 20px; }
+           }
+
+           .cookie-banner {
+               position: fixed;
+               left: 20px;
+               right: 20px;
+               bottom: 20px;
+               z-index: 900;
+               background: #fff;
+               border: 1px solid var(--border);
+               border-radius: var(--radius);
+               box-shadow: 0 12px 40px rgba(0,0,0,.18);
+               padding: 18px 20px;
+               display: none;
+               align-items: center;
+               gap: 18px;
+               max-width: 960px;
+               margin: 0 auto;
+           }
+           .cookie-banner.show { display: flex; }
+           .cookie-banner .cookie-text {
+               flex: 1;
+               font-size: 14px;
+               color: var(--muted);
+               line-height: 1.5;
+               margin: 0;
+           }
+           .cookie-banner .cookie-text a { font-weight: 600; }
+           .cookie-actions {
+               display: flex;
+               gap: 10px;
+               flex-shrink: 0;
+           }
+           .cookie-actions .btn { min-height: 42px; padding: 10px 20px; font-size: 14px; }
+           .cookie-actions .btn-ghost {
+               background: transparent;
+               color: var(--brand);
+               border: 1px solid var(--brand);
+           }
+           .cookie-actions .btn-ghost:hover {
+               background: var(--soft);
+               color: var(--brand-dark);
+           }
+
+           @media(max-width:720px) {
+               .cookie-banner {
+                   left: 12px;
+                   right: 12px;
+                   bottom: 86px;
+                   flex-direction: column;
+                   align-items: stretch;
+                   padding: 16px;
+               }
+               .cookie-actions { flex-direction: column; }
+               .cookie-actions .btn { width: 100%; }
+           }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <a href="#top" class="logo" aria-label="На главную">Faberlic — мир</a>
+            <nav class="nav-links" aria-label="Основная навигация">
+                <a href="#benefits">Преимущества</a>
+                <a href="#steps">Как начать</a>
+                <a href="#form">Регистрация</a>
+                <a href="#faq">Вопросы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div>
+                    <h1 id="hero-title">Откройте мир Faberlic вместе с нами</h1>
+                    <p class="lead">Актуальный каталог, персональные консультации и удобная регистрация онлайн. Начните пользоваться продуктами и возможностями бренда уже сегодня.</p>
+                    <a href="#form" class="btn">Оставить заявку</a>
+                </div>
+                <div class="hero-img">
+                    <img
+                        src="images/hero-cosmetics.jpg"
+                        alt="Косметика Faberlic"
+                        width="1200"
+                        height="1200"
+                        loading="eager"
+                        onerror="this.onerror=null;this.src='https://placehold.co/1200x1200/fdf2f6/c2185b?text=Faberlic';">
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" aria-labelledby="benefits-title">
+            <div class="container">
+                <h2 id="benefits-title">Почему выбирают нас</h2>
+                <p class="lead">Простые и понятные шаги, поддержка и доступ к актуальным предложениям.</p>
+                <div class="cards">
+                    <article class="card">
+                        <div class="icon" aria-hidden="true">✨</div>
+                        <h3>Актуальный каталог</h3>
+                        <p>Свежие предложения и новинки — всегда под рукой.</p>
+                    </article>
+                    <article class="card">
+                        <div class="icon" aria-hidden="true">🤝</div>
+                        <h3>Личная поддержка</h3>
+                        <p>Поможем разобраться с оформлением и ответим на вопросы.</p>
+                    </article>
+                    <article class="card">
+                        <div class="icon" aria-hidden="true">🔒</div>
+                        <h3>Безопасно и просто</h3>
+                        <p>Регистрация занимает пару минут и не требует лишних действий.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps" class="steps" aria-labelledby="steps-title">
+            <div class="container">
+                <h3 id="steps-title">Как начать</h3>
+                <ol>
+                    <li>
+                        <strong>Оставьте заявку</strong>
+                        <p>Заполните короткую форму на этой странице.</p>
+                    </li>
+                    <li>
+                        <strong>Свяжитесь с нами</strong>
+                        <p>Мы уточним детали и ответим на вопросы.</p>
+                    </li>
+                    <li>
+                        <strong>Начните пользоваться</strong>
+                        <p>Получите доступ к каталогу и предложениям.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="form" aria-labelledby="form-title">
+            <div class="container">
+                <div class="form-box">
+                    <h2 id="form-title">Оставить заявку</h2>
+                    <p style="color:var(--muted)">Заполните форму — мы свяжемся с вами.</p>
+
+                    <!-- ВАЖНО: Здесь мы убрали novalidate и добавили action="send.php" -->
+                    <form id="leadForm" action="send.php" method="POST">
+                        <label for="name">Имя *</label>
+                        <input id="name" name="name" type="text" placeholder="Ваше имя" required autocomplete="name" minlength="2">
+
+                        <label for="phone">Телефон *</label>
+                        <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel">
+
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+
+                        <label for="message">Комментарий</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Необязательно"></textarea>
+
+                        <div class="consent-row" id="consentRow">
+                            <input id="consent" name="consent" type="checkbox" required>
+                            <label for="consent">
+                                Я даю согласие на обработку моих персональных данных и принимаю условия
+                                <a href="#" data-modal="privacy">Политики конфиденциальности</a>,
+                                <a href="#" data-modal="consent">Согласия на обработку персональных данных</a> и
+                                <a href="#" data-modal="terms">Пользовательского соглашения</a>.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn">Отправить</button>
+
+                        <p class="hint">
+                            Нажимая кнопку «Отправить», вы подтверждаете, что ознакомлены с
+                            <a href="#" data-modal="terms">Пользовательским соглашением</a> и
+                            <a href="#" data-modal="privacy">Политикой конфиденциальности</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title">Частые вопросы</h2>
+                <details>
+                    <summary>Это бесплатно?</summary>
+                    <p>Да, доступ к сайту и отправка заявки бесплатны.</p>
+                </details>
+                <details>
+                    <summary>Как быстро со мной свяжутся?</summary>
+                    <p>Обычно в течение рабочего дня.</p>
+                </details>
+                <details>
+                    <summary>Что делать, если не приходит ответ?</summary>
+                    <p>Напишите на <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a>.</p>
+                </details>
+                <details>
+                    <summary>Нужно ли что-то покупать сразу?</summary>
+                    <p>Нет. Сначала мы ответим на вопросы, а решение вы примете сами.</p>
+                </details>
+                <details>
+                    <summary>Как вы обрабатываете мои данные?</summary>
+                    <p>Мы обрабатываем персональные данные в соответствии с
+                    <a href="#" data-modal="privacy">Политикой конфиденциальности</a> и
+                    <a href="#" data-modal="consent">Согласием на обработку персональных данных</a>.
+                    Данные используются только для связи с вами по вашей заявке.</p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="foot-grid">
+                <div>
+                    <h4>Faberlic — мир</h4>
+                    <p>Онлайн-ресурс с информацией о продуктах и возможностях бренда.</p>
+                </div>
+                <div>
+                    <h4>Документы</h4>
+                    <p><a href="#" data-modal="terms">Пользовательское соглашение</a></p>
+                    <p><a href="#" data-modal="privacy">Политика конфиденциальности</a></p>
+                    <p><a href="#" data-modal="consent">Согласие на обработку ПД</a></p>
+                </div>
+                <div>
+                    <h4>Контакты</h4>
+                    <p><a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                © <span id="year"></span> Faberlic — мир. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" aria-hidden="true">
+        <a href="#form" class="btn" tabindex="-1">Оставить заявку</a>
+    </div>
+
+    <!-- Модальные окна (Политика, Соглашение, Согласие) -->
+    <div class="modal-overlay" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="privacy-title">Политика конфиденциальности</h2><p class="modal-meta">Дата последнего обновления: 01.01.2026</p><h3>1. Общие положения</h3><p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта <strong>faberliconline37.online</strong>.</p><p class="modal-footer-note">Контакт для обращений: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+    <div class="modal-overlay" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="terms-title">Пользовательское соглашение</h2><p class="modal-meta">Дата последнего обновления: 01.01.2026</p><h3>1. Предмет соглашения</h3><p>Настоящее Соглашение регулирует отношения между владельцем сайта <strong>faberliconline37.online</strong> и пользователем.</p><p class="modal-footer-note">Контакт для обращений: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+    <div class="modal-overlay" id="modal-consent" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="consent-title">Согласие на обработку персональных данных</h2><p class="modal-meta">Дата последнего обновления: 01.01.2026</p><h3>1. Субъект данных</h3><p>Пользователь, заполняющий форму, свободно даёт согласие на обработку персональных данных.</p><p class="modal-footer-note">Контакт для обращений: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false">
+        <p class="cookie-text">Мы используем cookie. Подробнее — в <a href="#" data-modal="privacy">Политике конфиденциальности</a>.</p>
+        <div class="cookie-actions"><button type="button" class="btn btn-ghost" id="cookieDecline">Отклонить</button><button type="button" class="btn" id="cookieAccept">Принять</button></div>
+    </div>
+
+    <script>
+        'use strict';
+
+        /* ===== 1. Год в подвале ===== */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ===== 2. МОДАЛЬНЫЕ ОКНА ===== */
+        const overlays = document.querySelectorAll('.modal-overlay');
+        function openModal(name) {
+            const ov = document.getElementById('modal-' + name);
+            if (!ov) return;
+            ov.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            const closeBtn = ov.querySelector('[data-close]');
+            if (closeBtn) closeBtn.focus();
+        }
+        function closeModal(ov) {
+            ov.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function closeAllModals() { overlays.forEach(ov => closeModal(ov)); }
+        document.querySelectorAll('a[data-modal]').forEach(link => {
+            link.addEventListener('click', function (e) { e.preventDefault(); openModal(this.getAttribute('data-modal')); });
+        });
+        document.querySelectorAll('[data-close]').forEach(btn => {
+            btn.addEventListener('click', function () { closeModal(this.closest('.modal-overlay')); });
+        });
+        overlays.forEach(ov => { ov.addEventListener('click', function (e) { if (e.target === ov) closeModal(ov); }); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllModals(); });
+
+        /* ===== 3. ПЛАВНЫЙ СКРОЛЛ ===== */
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const targetElement = document.querySelector(href);
+                if (!targetElement) return;
+                e.preventDefault();
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 0;
+                const scrollPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8;
+                window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+            });
+        });
+
+        /* ===== 4. COOKIE-БАННЕР ===== */
+        (function () {
+            const KEY = 'cookie_consent_v1';
+            const banner = document.getElementById('cookieBanner');
+            const acceptBtn = document.getElementById('cookieAccept');
+            const declineBtn = document.getElementById('cookieDecline');
+            if (!banner) return;
+            let stored = null;
+            try { stored = localStorage.getItem(KEY); } catch (e) {}
+            if (!stored) { setTimeout(() => banner.classList.add('show'), 600); }
+            function save(value) {
+                try { localStorage.setItem(KEY, value); } catch (e) {}
+                banner.classList.remove('show');
+            }
+            acceptBtn.addEventListener('click', () => save('accepted'));
+            declineBtn.addEventListener('click', () => save('declined'));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && banner.classList.contains('show')) { save('declined'); }
+            });
+        })();
+    </script>
+</body>
+</html>
