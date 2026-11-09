@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faberlic — каталог и консультации | Личный онлайн-ресурс</title>
+    <meta name="description" content="Актуальный каталог Faberlic, персональные консультации и регистрация онлайн. Оставьте заявку — мы свяжемся с вами.">
+
+    <meta property="og:title" content="Faberlic — каталог и консультации">
+    <meta property="og:description" content="Каталог, консультации и регистрация онлайн.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faberliconline37.online/">
+    <meta property="og:image" content="https://placehold.co/1200x630/0f766e/f0fdfa?text=Faberlic">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f766e'/><text x='50' y='68' font-size='56' text-anchor='middle' fill='%23f0fdfa' font-family='Georgia'>F</text></svg>">
+
+    <style>
+        /* ============ TOKENS ============ */
+        :root {
+            --ink: #1c2b2a;
+            --ink-soft: #4a5c5a;
+            --paper: #f6f3ec;
+            --paper-card: #fffdf8;
+            --forest: #0f766e;
+            --forest-deep: #134e4a;
+            --sage: #d9e9e4;
+            --line: #e2ddd0;
+            --accent: #b45309;
+            --radius: 3px;
+            --container: 1120px;
+            --pad: 72px;
+            --serif: "Georgia", "Times New Roman", serif;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--sans);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; display: block; height: auto; }
+        a { color: var(--forest); text-decoration: none; border-bottom: 1px solid transparent; }
+        a:hover { border-bottom-color: var(--forest); }
+
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.01em; }
+        h1 { font-size: clamp(34px, 5vw, 56px); }
+        h2 { font-size: clamp(26px, 3.6vw, 38px); }
+        h3 { font-size: 19px; font-family: var(--sans); font-weight: 700; }
+        p { margin: 0 0 14px; }
+        section { padding: var(--pad) 0; }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--forest);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .lead { font-size: 18px; color: var(--ink-soft); max-width: 620px; }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            display: inline-block;
+            background: var(--forest-deep);
+            color: #f0fdfa;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid var(--forest-deep);
+            cursor: pointer;
+            font-family: inherit;
+            transition: background .18s, color .18s;
+            text-align: center;
+            min-height: 50px;
+        }
+        .btn:hover { background: var(--forest); border-color: var(--forest); color: #fff; }
+        .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .btn:active { transform: translateY(1px); }
+        .btn-ghost { background: transparent; color: var(--forest-deep); }
+        .btn-ghost:hover { background: var(--sage); color: var(--forest-deep); }
+
+        /* ============ HEADER ============ */
+        header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(246, 243, 236, .94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo {
+            font-family: var(--serif);
+            font-size: 22px;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+        .logo span { color: var(--forest); }
+        .logo:hover { border-bottom: 0; }
+        .nav-links { display: flex; gap: 26px; font-size: 14px; }
+        .nav-links a { color: var(--ink-soft); border-bottom: 0; }
+        .nav-links a:hover { color: var(--forest); }
+        @media (max-width: 780px) { .nav-links { display: none; } }
+
+        /* ============ HERO ============ */
+        .hero { padding-top: 64px; }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 0.85fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .hero h1 em { font-style: italic; color: var(--forest); }
+        .hero .lead { margin-bottom: 30px; }
+        .hero-figure {
+            position: relative;
+            aspect-ratio: 4/5;
+            background: var(--sage);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .hero-figure img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-figure::after {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(255,255,255,.55);
+            pointer-events: none;
+        }
+        .hero-stamp {
+            position: absolute;
+            left: -28px;
+            bottom: 32px;
+            background: var(--paper-card);
+            border: 1px solid var(--line);
+            padding: 14px 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--forest-deep);
+        }
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+            .hero-figure { aspect-ratio: 4/3; order: -1; }
+            .hero-stamp { left: 16px; }
+        }
+
+        /* ============ DIVIDER ============ */
+        .rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+        /* ============ FEATURES ============ */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin-top: 36px;
+        }
+        .feature {
+            padding: 32px 28px;
+            border-right: 1px solid var(--line);
+        }
+        .feature:last-child { border-right: 0; }
+        .feature .num {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .feature h3 { margin-bottom: 8px; }
+        .feature p { color: var(--ink-soft); font-size: 15px; margin: 0; }
+        @media (max-width: 860px) {
+            .features-list { grid-template-columns: 1fr; }
+            .feature { border-right: 0; border-bottom: 1px solid var(--line); }
+            .feature:last-child { border-bottom: 0; }
+        }
+
+        /* ============ STEPS ============ */
+        .steps-section { background: var(--paper-card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+            counter-reset: step;
+        }
+        .step { counter-increment: step; }
+        .step::before {
+            content: "0" counter(step);
+            display: block;
+            font-family: var(--serif);
+            font-size: 44px;
+            color: var(--forest);
+            line-height: 1;
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--forest);
+            padding-bottom: 12px;
+            width: 64px;
+        }
+        .step strong { display: block; font-size: 16px; margin-bottom: 6px; }
+        .step p { color: var(--ink-soft); font-size: 15px; margin: 0; }
+        @media (max-width: 860px) { .steps-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+        /* ============ FORM ============ */
+        .form-wrap { max-width: 620px; margin: 0 auto; }
+        .form-card {
+            background: var(--paper-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 24px 48px -32px rgba(19, 78, 74, .25);
+        }
+        label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-soft);
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+        input[type="text"], input[type="tel"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px 2px;
+            border: 0;
+            border-bottom: 1px solid #cfc9b8;
+            border-radius: 0;
+            background: transparent;
+            font: inherit;
+            font-size: 16px;
+            color: var(--ink);
+            transition: border-color .15s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-bottom-color: var(--forest);
+            box-shadow: 0 1px 0 0 var(--forest);
+        }
+        textarea { resize: vertical; min-height: 70px; }
+
+        .consent-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 26px;
+            padding: 16px;
+            background: var(--sage);
+            border-radius: var(--radius);
+            align-items: flex-start;
+        }
+        .consent-row input[type="checkbox"] {
+            width: 18px; height: 18px;
+            margin-top: 3px; flex-shrink: 0;
+            accent-color: var(--forest);
+            cursor: pointer;
+        }
+        .consent-row label {
+            margin: 0; font-family: var(--sans); text-transform: none;
+            letter-spacing: 0; font-size: 13px; color: var(--ink-soft);
+            font-weight: 400; line-height: 1.55; cursor: pointer;
+        }
+        .consent-row label a { font-weight: 600; }
+        .consent-row.invalid { background: #f5e2d8; outline: 1px solid var(--accent); }
+
+        .form-card .btn { width: 100%; margin-top: 26px; }
+        .hint { font-size: 12.5px; color: var(--ink-soft); margin-top: 14px; }
+
+        .form-msg { display: none; margin-top: 14px; font-weight: 600; font-size: 14px; }
+        .form-msg.ok { display: block; color: #0f766e; }
+        .form-msg.err { display: block; color: #b91c1c; }
+
+        /* ============ FAQ ============ */
+        .faq-list { max-width: 760px; margin: 0 auto; border-top: 1px solid var(--line); }
+        details {
+            border-bottom: 1px solid var(--line);
+            padding: 20px 0;
+            background: transparent;
+        }
+        summary {
+            cursor: pointer;
+            font-family: var(--serif);
+            font-size: 18px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            color: var(--ink);
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+";
+            font-family: var(--sans);
+            color: var(--forest);
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1;
+            transition: transform .2s;
+        }
+        details[open] summary::after { content: "−"; }
+        details p { margin: 14px 0 0; color: var(--ink-soft); font-size: 15px; }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--ink);
+            color: #c8d3d1;
+            padding: 52px 0 28px;
+            font-size: 14px;
+        }
+        footer a { color: #e6efed; border-bottom: 0; }
+        footer a:hover { color: var(--sage); }
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 36px;
+            margin-bottom: 34px;
+        }
+        .foot-grid h4 {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin: 0 0 14px;
+        }
+        .foot-grid p { margin: 0 0 8px; }
+        .foot-bottom {
+            border-top: 1px solid #2d3b39;
+            padding-top: 20px;
+            color: #8a9a98;
+            font-size: 13px;
+            font-family: var(--mono);
+        }
+        @media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr; } }
+
+        /* ============ STICKY CTA ============ */
+        .sticky-cta {
+            display: none;
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+            background: var(--paper-card);
+            border-top: 1px solid var(--line);
+            padding: 12px 20px;
+        }
+        .sticky-cta .btn { width: 100%; }
+        @media (max-width: 780px) {
+            .sticky-cta { display: block; }
+            body { padding-bottom: 84px; }
+        }
+
+        /* ============ MODALS ============ */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(20, 35, 33, .6);
+            z-index: 1000;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+        .modal {
+            background: var(--paper-card);
+            max-width: 720px; width: 100%;
+            margin: 48px auto;
+            border-radius: var(--radius);
+            padding: 40px;
+            position: relative;
+            border: 1px solid var(--line);
+        }
+        .modal h2 { margin-top: 0; padding-right: 44px; }
+        .modal h3 { font-family: var(--serif); font-weight: 400; font-size: 20px; margin-top: 26px; }
+        .modal p, .modal li { font-size: 14.5px; color: var(--ink-soft); }
+        .modal ul { padding-left: 20px; }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink-soft);
+            font-size: 22px; line-height: 1;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: var(--sage); color: var(--forest-deep); }
+        .modal-meta {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+        }
+        .modal .modal-footer-note {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+        @media (max-width: 600px) {
+            .modal { padding: 26px; margin: 12px auto; }
+            .modal h2 { font-size: 22px; }
+            .form-card { padding: 26px; }
+        }
+
+        /* ============ COOKIE ============ */
+        .cookie-banner {
+            position: fixed;
+            left: 24px; right: 24px; bottom: 24px;
+            z-index: 900;
+            background: var(--ink);
+            color: #d8e2e0;
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            display: none;
+            align-items: center;
+            gap: 22px;
+            max-width: 940px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+        .cookie-banner.show { display: flex; }
+        .cookie-text { flex: 1; margin: 0; line-height: 1.55; }
+        .cookie-text a { color: var(--sage); }
+        .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+        .cookie-actions .btn { min-height: 42px; padding: 10px 20px; font-size: 13px; }
+        .cookie-actions .btn-ghost { color: var(--sage); border-color: #3d4d4b; }
+        .cookie-actions .btn-ghost:hover { background: #2d3b39; color: #fff; }
+        @media (max-width: 780px) {
+            .cookie-banner { left: 12px; right: 12px; bottom: 92px; flex-direction: column; align-items: stretch; }
+            .cookie-actions { flex-direction: column; }
+            .cookie-actions .btn { width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; animation: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <a href="#top" class="logo">Faberlic<span>.</span></a>
+            <nav class="nav-links" aria-label="Основная навигация">
+                <a href="#benefits">Преимущества</a>
+                <a href="#steps">Как начать</a>
+                <a href="#form">Регистрация</a>
+                <a href="#faq">Вопросы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Каталог · Консультации · Онлайн</span>
+                    <h1 id="hero-title">Красота с <em>характером</em> — рядом с вами</h1>
+                    <p class="lead">Свежие коллекции Faberlic, честные рекомендации и понятный путь к регистрации. Без суеты и навязчивых обещаний.</p>
+                    <a href="#form" class="btn">Оставить заявку</a>
+                </div>
+                <div class="hero-figure">
+                    <!-- Замените на своё фото. Сейчас — нейтральная заглушка в новой палитре -->
+                    <img
+                        src="images/hero-cosmetics.jpg"
+                        alt="Косметика Faberlic"
+                        width="900"
+                        height="1100"
+                        loading="eager"
+                        onerror="this.onerror=null;this.src='https://placehold.co/900x1100/134e4a/d9e9e4?text=Beauty+edition';">
+                    <div class="hero-stamp">Edition 2026<br>Natural care</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" aria-labelledby="benefits-title">
+            <div class="container">
+                <span class="eyebrow">01 — Почему мы</span>
+                <h2 id="benefits-title">Три причины остаться</h2>
+                <p class="lead">Никаких сложных условий — просто понятный сервис и поддержка.</p>
+
+                <div class="features-list">
+                    <article class="feature">
+                        <span class="num">01 / Каталог</span>
+                        <h3>Свежие коллекции</h3>
+                        <p>Новинки и актуальные предложения — всегда под рукой, без поисков по сайтам.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="num">02 / Поддержка</span>
+                        <h3>Личный консультант</h3>
+                        <p>Поможем с выбором и оформлением, ответим на вопросы простым языком.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="num">03 / Безопасность</span>
+                        <h3>Просто и надёжно</h3>
+                        <p>Регистрация занимает пару минут и не требует лишних действий.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps" class="steps-section" aria-labelledby="steps-title">
+            <div class="container">
+                <span class="eyebrow">02 — Как начать</span>
+                <h2 id="steps-title">Три шага к результату</h2>
+
+                <div class="steps-grid">
+                    <div class="step">
+                        <strong>Оставьте заявку</strong>
+                        <p>Заполните короткую форму на этой странице — это займёт минуту.</p>
+                    </div>
+                    <div class="step">
+                        <strong>Свяжитесь с нами</strong>
+                        <p>Уточним детали и ответим на все вопросы.</p>
+                    </div>
+                    <div class="step">
+                        <strong>Начните пользоваться</strong>
+                        <p>Получите доступ к каталогу и персональным предложениям.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="form" aria-labelledby="form-title">
+            <div class="container form-wrap">
+                <div class="form-card">
+                    <span class="eyebrow">Заявка</span>
+                    <h2 id="form-title">Оставить заявку</h2>
+                    <p style="color:var(--ink-soft)">Заполните форму — мы свяжемся с вами.</p>
+
+                    <form id="leadForm" action="send.php" method="POST">
+                        <label for="name">Имя *</label>
+                        <input id="name" name="name" type="text" placeholder="Ваше имя" required autocomplete="name" minlength="2">
+
+                        <label for="phone">Телефон *</label>
+                        <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required autocomplete="tel" inputmode="tel">
+
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+
+                        <label for="message">Комментарий</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Необязательно"></textarea>
+
+                        <div class="consent-row" id="consentRow">
+                            <input id="consent" name="consent" type="checkbox" required>
+                            <label for="consent">
+                                Я даю согласие на обработку моих персональных данных и принимаю условия
+                                <a href="#" data-modal="privacy">Политики конфиденциальности</a>,
+                                <a href="#" data-modal="consent">Согласия на обработку персональных данных</a> и
+                                <a href="#" data-modal="terms">Пользовательского соглашения</a>.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn">Отправить</button>
+
+                        <p class="hint">
+                            Нажимая «Отправить», вы подтверждаете, что ознакомлены с
+                            <a href="#" data-modal="terms">Пользовательским соглашением</a> и
+                            <a href="#" data-modal="privacy">Политикой конфиденциальности</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-title">
+            <div class="container">
+                <span class="eyebrow" style="text-align:center; display:block;">03 — FAQ</span>
+                <h2 id="faq-title" style="text-align:center; margin-bottom:36px;">Частые вопросы</h2>
+                <div class="faq-list">
+                    <details>
+                        <summary>Это бесплатно?</summary>
+                        <p>Да, доступ к сайту и отправка заявки бесплатны.</p>
+                    </details>
+                    <details>
+                        <summary>Как быстро со мной свяжутся?</summary>
+                        <p>Обычно в течение рабочего дня.</p>
+                    </details>
+                    <details>
+                        <summary>Что делать, если не приходит ответ?</summary>
+                        <p>Напишите на <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a>.</p>
+                    </details>
+                    <details>
+                        <summary>Нужно ли что-то покупать сразу?</summary>
+                        <p>Нет. Сначала мы ответим на вопросы, а решение вы примете сами.</p>
+                    </details>
+                    <details>
+                        <summary>Как вы обрабатываете мои данные?</summary>
+                        <p>Мы обрабатываем персональные данные в соответствии с
+                        <a href="#" data-modal="privacy">Политикой конфиденциальности</a> и
+                        <a href="#" data-modal="consent">Согласием на обработку персональных данных</a>.
+                        Данные используются только для связи с вами по вашей заявке.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="foot-grid">
+                <div>
+                    <h4>О проекте</h4>
+                    <p>Онлайн-ресурс с информацией о продуктах и возможностях бренда Faberlic.</p>
+                </div>
+                <div>
+                    <h4>Документы</h4>
+                    <p><a href="#" data-modal="terms">Пользовательское соглашение</a></p>
+                    <p><a href="#" data-modal="privacy">Политика конфиденциальности</a></p>
+                    <p><a href="#" data-modal="consent">Согласие на обработку ПД</a></p>
+                </div>
+                <div>
+                    <h4>Контакты</h4>
+                    <p><a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                © <span id="year"></span> Faberlic · All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" aria-hidden="true">
+        <a href="#form" class="btn" tabindex="-1">Оставить заявку</a>
+    </div>
+
+    <!-- Модальные окна -->
+    <div class="modal-overlay" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="privacy-title">Политика конфиденциальности</h2><p class="modal-meta">Обновлено: 01.01.2026</p><h3>1. Общие положения</h3><p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта <strong>faberliconline37.online</strong>.</p><p class="modal-footer-note">Контакт: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+    <div class="modal-overlay" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="terms-title">Пользовательское соглашение</h2><p class="modal-meta">Обновлено: 01.01.2026</p><h3>1. Предмет соглашения</h3><p>Настоящее Соглашение регулирует отношения между владельцем сайта <strong>faberliconline37.online</strong> и пользователем.</p><p class="modal-footer-note">Контакт: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+    <div class="modal-overlay" id="modal-consent" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+        <div class="modal"><button class="modal-close" type="button" aria-label="Закрыть" data-close>&times;</button><h2 id="consent-title">Согласие на обработку персональных данных</h2><p class="modal-meta">Обновлено: 01.01.2026</p><h3>1. Субъект данных</h3><p>Пользователь, заполняющий форму, свободно даёт согласие на обработку персональных данных.</p><p class="modal-footer-note">Контакт: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a></p></div>
+    </div>
+
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false">
+        <p class="cookie-text">Мы используем cookie. Подробнее — в <a href="#" data-modal="privacy">Политике конфиденциальности</a>.</p>
+        <div class="cookie-actions"><button type="button" class="btn btn-ghost" id="cookieDecline">Отклонить</button><button type="button" class="btn" id="cookieAccept">Принять</button></div>
+    </div>
+
+    <script>
+        'use strict';
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const overlays = document.querySelectorAll('.modal-overlay');
+        function openModal(name) {
+            const ov = document.getElementById('modal-' + name);
+            if (!ov) return;
+            ov.classList.add('open');
+            document.body.style.overflow
