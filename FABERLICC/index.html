@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faberlic — мир возможностей | Каталог и консультации онлайн</title>
+    <meta name="description" content="Присоединяйтесь к Faberlic: актуальный каталог, персональные консультации и удобная регистрация онлайн. Оставьте заявку — мы свяжемся с вами.">
+
+    <meta property="og:title" content="Faberlic — мир возможностей">
+    <meta property="og:description" content="Каталог, консультации и регистрация онлайн. Оставьте заявку.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faberliconline37.online/">
+    <meta property="og:image" content="https://placehold.co/1200x630?text=Faberlic">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>F</text></svg>">
+
+    <style>
+        /* =========================================
+           ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
+           ========================================= */
+        :root {
+            --brand: #e91e63;
+            --brand-2: #ff6f91;
+            --brand-3: #ff3d7f;
+            --brand-dark: #ad1457;
+            --gold: #d4af37;
+            --gold-2: #f6d365;
+
+            --bg: #0a0c11;
+            --bg-2: #0f1219;
+            --card: #141824;
+            --card-2: #1b2030;
+            --border: #262c3d;
+            --border-2: #323a52;
+            --text: #eef1f8;
+            --muted: #8b93a7;
+
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 24px 70px rgba(0,0,0,.55);
+            --shadow-soft: 0 10px 34px rgba(0,0,0,.4);
+            
+            --container: 1180px;
+            --section-pad: 100px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; color-scheme: dark }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+            position: relative;
+            opacity: 0; 
+            transition: opacity 0.5s ease;
+        }
+        
+        body.loaded { opacity: 1; }
+
+        img { max-width: 100%; display: block; height: auto }
+        a { color: var(--brand-2); text-decoration: none; transition: color .2s }
+        a:hover { text-decoration: underline; color: var(--gold-2) }
+
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 22px; position: relative; z-index: 2 }
+
+        h1, h2, h3 { line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em }
+        h1, h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 800 }
+        h1 { font-size: clamp(36px, 5.5vw, 64px) }
+        h2 { font-size: clamp(28px, 3.6vw, 44px) }
+        h3 { font-size: 19px; font-weight: 700 }
+        p { margin: 0 0 16px }
+        section { padding: var(--section-pad) 0; position: relative }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--brand-2), var(--brand-3), var(--gold-2), var(--brand-2));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 6s ease infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+
+        .lead {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        /* ===== ПРЕЛОАДЕР ===== */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .loader-logo {
+            font-family: "Playfair Display", serif;
+            font-size: 40px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--brand-2), var(--gold-2), var(--brand-2));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 2s infinite, pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* ===== КАСТОМНЫЙ КУРСОР ===== */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background-color: var(--brand);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(233, 30, 99, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .cursor-outline.hovering {
+            width: 60px; height: 60px;
+            background-color: rgba(233, 30, 99, 0.1);
+            border-color: var(--brand);
+        }
+        @media (hover: none) {
+            .cursor-dot, .cursor-outline { display: none; }
+            *, *::before, *::after { cursor: auto; }
+        }
+
+        /* ===== ФОН ===== */
+        .bg-blobs {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: .5;
+            animation: blobFloat 25s ease-in-out infinite alternate;
+        }
+        .blob-1 { width: 700px; height: 700px; top: -300px; left: -250px; background: radial-gradient(circle, rgba(233,30,99,.4), transparent 70%); }
+        .blob-2 { width: 600px; height: 600px; top: 30%; right: -250px; background: radial-gradient(circle, rgba(212,175,55,.3), transparent 70%); animation-delay: -8s; }
+        .blob-3 { width: 500px; height: 500px; bottom: -200px; left: 20%; background: radial-gradient(circle, rgba(255,61,127,.3), transparent 70%); animation-delay: -15s; }
+        @keyframes blobFloat {
+            0%   { transform: translate3d(0,0,0) scale(1); }
+            50%  { transform: translate3d(60px,-50px,0) scale(1.1); }
+            100% { transform: translate3d(-50px,70px,0) scale(.9); }
+        }
+        #particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .6; }
+
+        /* ===== АНИМАЦИИ ПОЯВЛЕНИЯ ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        .stagger-container { overflow: hidden; }
+        .stagger-item { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .stagger-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-3), var(--gold));
+            background-size: 200% 200%;
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-weight: 700;
+            border: 0;
+            cursor: none;
+            font-size: 16px;
+            font-family: inherit;
+            transition: transform 0.2s ease-out, box-shadow 0.3s;
+            text-align: center;
+            min-height: 54px;
+            text-decoration: none;
+            box-shadow: 0 12px 34px rgba(233,30,99,.4);
+            animation: gradientShift 6s ease infinite;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover::after { left: 100%; }
+        .btn:hover {
+            text-decoration: none;
+            color: #fff;
+            box-shadow: 0 20px 50px rgba(233,30,99,.6);
+        }
+        .btn:active { transform: scale(.95) }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50%      { background-position: 100% 50%; }
+        }
+
+        .btn-ghost {
+            background: rgba(255,255,255,.04);
+            color: var(--text);
+            border: 1px solid var(--border);
+            box-shadow: none;
+            padding: 11px 24px;
+            min-height: 44px;
+            font-size: 14px;
+            animation: none;
+            border-radius: 6px;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,.09); color: var(--text); box-shadow: none; }
+
+        /* ===== ХЕДЕР ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10,12,17,.6);
+            backdrop-filter: blur(20px) saturate(140%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        header.scrolled { background: rgba(10,12,17,.95); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+        .logo {
+            font-family: "Playfair Display", Georgia, serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -.5px;
+            background: linear-gradient(135deg, var(--brand-2), var(--gold-2), var(--brand-2));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 5s ease infinite;
+        }
+        .nav-links { display: flex; gap: 30px; font-size: 15px; font-weight: 500; }
+        .nav-links a { color: var(--muted); position: relative; padding: 6px 0; text-decoration: none; }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--brand), var(--gold));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a:hover::after { width: 100%; }
+        @media(max-width:720px) { .nav-links { display: none } }
+
+        /* ===== HERO ===== */
+        .hero { padding: 120px 0 100px; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(212,175,55,.1);
+            border: 1px solid rgba(212,175,55,.4);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-2);
+            margin-bottom: 26px;
+            letter-spacing: .02em;
+            animation: fadeUp 0.8s cubic-bezier(.34,1.56,.64,1) both;
+        }
+        .hero-badge span { display: inline-block; animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px) } to { opacity: 1; transform: translateY(0) } }
+
+        .hero-title-wrap { animation: fadeUp 0.9s cubic-bezier(.34,1.56,.64,1) 0.1s both; }
+        
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: .15em solid var(--brand);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .05em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--brand) } }
+
+        .hero .lead { animation: fadeUp 1s cubic-bezier(.34,1.56,.64,1) 0.2s both; margin-bottom: 30px; }
+        .hero .btn { animation: fadeUp 1s cubic-bezier(.34,1.56,.64,1) 0.3s both; }
+
+        .hero-img-wrap { perspective: 1000px; }
+        .hero-img {
+            aspect-ratio: 1/1;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow), 0 0 80px rgba(233,30,99,.2);
+            border: 1px solid var(--border-2);
+            position: relative;
+            background: linear-gradient(135deg, var(--card), var(--card-2));
+            transition: transform 0.2s ease-out;
+            transform-style: preserve-3d;
+        }
+        .hero-img::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(233,30,99,.1), rgba(212,175,55,.05));
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translateZ(20px) scale(1.05);
+            transition: transform 0.5s ease;
+        }
+        .hero-img:hover img { transform: translateZ(40px) scale(1.1); }
+
+        .hero-features {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            animation: fadeUp 1s cubic-bezier(.34,1.56,.64,1) 0.4s both;
+            flex-wrap: wrap;
+        }
+        .hero-feature-item { display: flex; flex-direction: column; gap: 4px; }
+        .hero-feature-item strong { font-size: 14px; font-weight: 700; color: var(--text); }
+        .hero-feature-item span { font-size: 12px; color: var(--muted); }
+
+        @media(max-width:880px) {
+            .hero { padding: 80px 0 70px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-img { order: -1; max-width: 460px; margin: 0 auto; }
+            .hero-features { gap: 20px; }
+        }
+
+        /* ===== БЕГУЩАЯ СТРОКА ===== */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(233,30,99,.05);
+            border-top: 1px solid rgba(233,30,99,.1);
+            border-bottom: 1px solid rgba(233,30,99,.1);
+            padding: 18px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+        .marquee-item {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold-2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .marquee-item::before { content: "✦"; color: var(--brand); font-size: 20px; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ===== КАРТОЧКИ ===== */
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 50px; }
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 30px;
+            box-shadow: var(--shadow-soft);
+            background: linear-gradient(180deg, var(--card), var(--bg-2));
+            transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--brand), var(--gold), var(--brand));
+            background-size: 200% 100%;
+            animation: borderSlide 4s linear infinite;
+            opacity: 0.85;
+        }
+        @keyframes borderSlide { 0% { background-position: 0% 0 } 100% { background-position: 200% 0 } }
+        
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(233,30,99,.15), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .card:hover::after { opacity: 1; }
+        .card:hover { border-color: rgba(233,30,99,.5); box-shadow: 0 28px 70px rgba(233,30,99,.2); }
+        
+        .card .icon {
+            font-size: 36px; margin-bottom: 18px;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 66px; height: 66px; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(233,30,99,.2), rgba(212,175,55,.14));
+            border: 1px solid var(--border);
+            transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+        }
+        .card:hover .icon { transform: rotate(-10deg) scale(1.15); }
+
+        /* ===== ОТЗЫВЫ ===== */
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+        .review-card {
+            background: linear-gradient(180deg, var(--card), var(--bg-2));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            position: relative;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .review-card:hover { border-color: rgba(212,175,55,.5); transform: translateY(-5px); }
+        .review-card::before {
+            content: "“"; position: absolute; top: 10px; right: 24px;
+            font-family: "Playfair Display", serif; font-size: 80px;
+            color: var(--gold); opacity: 0.15; line-height: 1;
+        }
+        .review-text { font-size: 15px; color: var(--text); line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand), var(--gold));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 700; font-size: 16px;
+        }
+        .review-info strong { display: block; font-size: 14px; color: var(--text); }
+        .review-info span { font-size: 12px; color: var(--muted); }
+        @media(max-width:760px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+        /* ===== ШАГИ ===== */
+        .steps { background: linear-gradient(180deg, transparent, rgba(233,30,99,.03), transparent); }
+        .steps ol {
+            list-style: none; padding: 0; margin: 56px 0 0;
+            display: grid; grid-template-columns: repeat(3,1fr); gap: 26px;
+            counter-reset: s;
+        }
+        .steps li {
+            background: linear-gradient(180deg, var(--card), var(--bg-2));
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 34px 28px; box-shadow: var(--shadow-soft);
+            counter-increment: s; position: relative;
+            transition: transform 0.35s, border-color 0.3s;
+        }
+        .steps li:hover { transform: translateY(-6px); border-color: rgba(212,175,55,.5); }
+        .steps li::before {
+            content: counter(s, decimal-leading-zero);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-3));
+            color: #fff; font-weight: 800; font-size: 15px; margin-bottom: 18px;
+            box-shadow: 0 8px 24px rgba(233,30,99,.4);
+        }
+        .steps li strong { display: block; margin-bottom: 8px; font-size: 17px; }
+        .steps li p { margin: 0; color: var(--muted); font-size: 15px; }
+        @media(max-width:880px) { .steps ol { grid-template-columns: 1fr; } }
+
+        /* ===== ФОРМА ===== */
+        .form-box {
+            max-width: 620px; margin: 0 auto; padding: 46px 40px;
+            border-radius: var(--radius); box-shadow: var(--shadow), 0 0 60px rgba(233,30,99,.1);
+            border: 1px solid var(--border); background: linear-gradient(180deg, rgba(20,24,36,.95), rgba(15,18,25,.98));
+            position: relative; overflow: hidden; backdrop-filter: blur(14px);
+        }
+        .form-box::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--brand), var(--gold), var(--brand));
+            background-size: 200% 100%; animation: borderSlide 4s linear infinite;
+        }
+        label { display: block; font-size: 13px; margin: 20px 0 8px; font-weight: 600; color: var(--muted); }
+        input[type="text"], input[type="tel"], input[type="email"], textarea {
+            width: 100%; padding: 15px 18px; border: 1px solid var(--border);
+            border-radius: var(--radius-sm); font-size: 15px; font-family: inherit;
+            background: var(--card-2); color: var(--text);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none; border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(233,30,99,.2);
+        }
+        .form-box .btn { width: 100%; margin-top: 24px; }
+        
+        .consent-row {
+            display: flex; align-items: flex-start; gap: 12px; margin-top: 24px;
+            padding: 15px 18px; background: rgba(233,30,99,.06);
+            border: 1px solid rgba(233,30,99,.22); border-radius: var(--radius-sm);
+        }
+        .consent-row input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--brand); cursor: none; }
+        .consent-row label { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; cursor: none; }
+
+        /* ===== FAQ ===== */
+        details {
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 18px 24px; margin-bottom: 14px;
+            background: linear-gradient(180deg, var(--card), var(--bg-2));
+            transition: border-color 0.3s, transform 0.2s;
+        }
+        details:hover { border-color: rgba(233,30,99,.4); transform: translateX(5px); }
+        details[open] { border-color: rgba(233,30,99,.5); }
+        summary {
+            cursor: none; font-weight: 600; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+"; color: var(--gold-2); font-size: 24px;
+            transition: transform 0.3s;
+        }
+        details[open] summary::after { transform: rotate(135deg); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(5,7,12,.9); border-top: 1px solid var(--border);
+            padding: 70px 0 30px; font-size: 14px; position: relative;
+        }
+        footer::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--brand), var(--gold), transparent);
+            opacity: .5;
+        }
+        .foot-grid { display: grid; grid-template-columns: 2fr 1.2fr 1.2fr; gap: 50px; margin-bottom: 40px; }
+        .foot-col h4 { color: var(--gold-2); margin: 0 0 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .foot-col p { margin: 0 0 12px; line-height: 1.6; font-size: 14.5px; }
+        .foot-col .foot-desc { color: var(--muted); font-size: 14px; max-width: 320px; margin-top: 10px; }
+        .foot-links { display: flex; flex-direction: column; gap: 14px; }
+        .foot-links a { color: var(--text); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .foot-links a::before { content: "→"; color: var(--brand-2); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
+        .foot-links a:hover { color: var(--gold-2); }
+        .foot-links a:hover::before { opacity: 1; transform: translateX(0); }
+        .foot-bottom {
+            border-top: 1px solid var(--border); padding-top: 24px;
+            display: flex; justify-content: space-between; color: #5d6578; font-size: 13px; flex-wrap: wrap; gap: 15px;
+        }
+        @media(max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+        @media(max-width: 600px) { .foot-grid { grid-template-columns: 1fr; gap: 30px; } .foot-bottom { flex-direction: column; } }
+
+        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(5,7,12,.85); backdrop-filter: blur(10px);
+            z-index: 1000; padding: 20px; overflow-y: auto;
+        }
+        .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+        .modal {
+            background: linear-gradient(180deg, var(--card), var(--bg-2));
+            border: 1px solid var(--border); max-width: 780px; width: 100%;
+            margin: 48px auto; border-radius: var(--radius); padding: 42px;
+            position: relative; animation: modalIn 0.4s cubic-bezier(.34,1.56,.64,1);
+        }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(40px) scale(.95) } to { opacity: 1; transform: translateY(0) scale(1) } }
+        .modal h2 { font-size: 26px; margin-top: 0; padding-right: 48px; }
+        .modal h3 { color: var(--gold-2); margin-top: 30px; font-size: 17px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .modal p, .modal li { color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+        .modal strong { color: var(--text); }
+        .modal ul { padding-left: 22px; margin-bottom: 20px; }
+        .modal li { margin-bottom: 10px; }
+        .modal-meta { font-size: 13px; color: var(--muted); margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+        .modal .modal-footer-note { margin-top: 30px; padding: 15px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); background: rgba(255,255,255,.02); border-radius: 8px; }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 42px; height: 42px; border-radius: 50%;
+            border: 1px solid var(--border); background: var(--card-2);
+            color: var(--text); font-size: 22px; cursor: none;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.3s;
+        }
+        .modal-close:hover { background: var(--brand-dark); transform: rotate(90deg); }
+
+        /* ===== COOKIE BANNER ===== */
+        .cookie-banner {
+            position: fixed; left: 20px; right: 20px; bottom: 20px;
+            background: rgba(20,24,36,.95); backdrop-filter: blur(16px);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 20px 26px; display: none; align-items: center; gap: 18px;
+            max-width: 960px; margin: 0 auto; z-index: 900;
+        }
+        .cookie-banner.show { display: flex; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px) } to { opacity: 1; transform: translateY(0) } }
+        .cookie-text { flex: 1; font-size: 14px; color: var(--muted); margin: 0; }
+        .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+        .cookie-actions .btn { min-height: 42px; padding: 10px 22px; font-size: 14px; }
+
+        /* ===== АДАПТИВ ===== */
+        @media(max-width: 880px) { .cards { grid-template-columns: 1fr; } }
+        @media(max-width: 720px) {
+            .cookie-banner { flex-direction: column; align-items: stretch; bottom: 92px; }
+            .cookie-actions { flex-direction: column; }
+            .cookie-actions .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ПРЕЛОАДЕР -->
+    <div id="preloader">
+        <div class="loader-logo">Faberlic</div>
+    </div>
+
+    <!-- КАСТОМНЫЙ КУРСОР -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- ФОН -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <canvas id="particles"></canvas>
+
+    <header id="siteHeader">
+        <div class="container nav">
+            <a href="#top" class="logo">Faberlic</a>
+            <nav class="nav-links">
+                <a href="#benefits">Преимущества</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#steps">Как начать</a>
+                <a href="#form">Регистрация</a>
+                <a href="#faq">Вопросы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="hero-badge"><span>✦</span> Премиальная косметика онлайн</span>
+                    <div class="hero-title-wrap">
+                        <h1>Откройте мир <span class="gradient-text">Faberlic</span> вместе с нами</h1>
+                    </div>
+                    <!-- Эффект печатной машинки -->
+                    <p class="lead">
+                        <span class="typewriter">Актуальный каталог и персональный подход.</span>
+                    </p>
+                    <a href="#form" class="btn magnetic">Оставить заявку</a>
+
+                    <div class="hero-features">
+                        <div class="hero-feature-item"><strong>Оригинал</strong><span>Сертифицированная продукция</span></div>
+                        <div class="hero-feature-item"><strong>Доставка</strong><span>По РФ от 2 дней</span></div>
+                        <div class="hero-feature-item"><strong>Поддержка</strong><span>Помощь с выбором 24/7</span></div>
+                    </div>
+                </div>
+                
+                <!-- ПАРАЛЛАКС ФОТО -->
+                <div class="hero-img-wrap">
+                    <div class="hero-img" id="heroImg">
+                        <img src="images/hero-cosmetics.jpg" alt="Косметика Faberlic" onerror="this.onerror=null;this.src='https://placehold.co/1200x1200/141824/e91e63?text=Faberlic';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЕГУЩАЯ СТРОКА -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="marquee-item">Оригинальная продукция</div>
+                <div class="marquee-item">Бесплатная консультация</div>
+                <div class="marquee-item">Быстрая доставка</div>
+                <div class="marquee-item">Подарки к заказу</div>
+                <!-- Дубликат для бесконечной анимации -->
+                <div class="marquee-item">Оригинальная продукция</div>
+                <div class="marquee-item">Бесплатная консультация</div>
+                <div class="marquee-item">Быстрая доставка</div>
+                <div class="marquee-item">Подарки к заказу</div>
+            </div>
+        </div>
+
+        <!-- ПРЕИМУЩЕСТВА -->
+        <section id="benefits">
+            <div class="container">
+                <h2 class="reveal">Почему выбирают нас</h2>
+                <p class="lead reveal">Простые и понятные шаги, поддержка и доступ к актуальным предложениям.</p>
+                <div class="cards stagger-container">
+                    <article class="card stagger-item">
+                        <div class="icon">✨</div>
+                        <h3>Актуальный каталог</h3>
+                        <p>Свежие предложения и новинки — всегда под рукой.</p>
+                    </article>
+                    <article class="card stagger-item">
+                        <div class="icon">🤝</div>
+                        <h3>Личная поддержка</h3>
+                        <p>Поможем разобраться с оформлением и ответим на вопросы.</p>
+                    </article>
+                    <article class="card stagger-item">
+                        <div class="icon">🔒</div>
+                        <h3>Безопасно и просто</h3>
+                        <p>Регистрация занимает пару минут и не требует лишних действий.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ОТЗЫВЫ -->
+        <section id="reviews">
+            <div class="container">
+                <h2 class="reveal">Отзывы наших клиентов</h2>
+                <p class="lead reveal">Мы гордимся доверием тысяч покупателей по всей стране.</p>
+                <div class="reviews-grid stagger-container">
+                    <div class="review-card stagger-item">
+                        <div class="review-text">Заказываю косметику уже второй год. Качество на высоте, а консультант всегда поможет подобрать уход именно для моей кожи. Очень довольна!</div>
+                        <div class="review-author">
+                            <div class="review-avatar">А</div>
+                            <div class="review-info"><strong>Анна С.</strong><span>Москва</span></div>
+                        </div>
+                    </div>
+                    <div class="review-card stagger-item">
+                        <div class="review-text">Оформил заказ впервые, переживал. Но всё пришло быстро, упаковано отлично. Подарили пробники, что очень приятно. Буду заказывать ещё.</div>
+                        <div class="review-author">
+                            <div class="review-avatar">Д</div>
+                            <div class="review-info"><strong>Дмитрий К.</strong><span>Санкт-Петербург</span></div>
+                        </div>
+                    </div>
+                    <div class="review-card stagger-item">
+                        <div class="review-text">Отличная линейка для волос. После нескольких недель использования заметила реальный результат. Спасибо за профессиональную консультацию!</div>
+                        <div class="review-author">
+                            <div class="review-avatar">Е</div>
+                            <div class="review-info"><strong>Екатерина В.</strong><span>Казань</span></div>
+                        </div>
+                    </div>
+                    <div class="review-card stagger-item">
+                        <div class="review-text">Всегда оперативная связь и помощь в выборе. Заказываю здесь подарки для мамы и сестры, всегда попадаем в точку с выбором.</div>
+                        <div class="review-author">
+                            <div class="review-avatar">М</div>
+                            <div class="review-info"><strong>Мария Л.</strong><span>Екатеринбург</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ШАГИ -->
+        <section id="steps" class="steps">
+            <div class="container">
+                <h2 class="reveal">Как начать</h2>
+                <ol class="stagger-container">
+                    <li class="stagger-item">
+                        <strong>Оставьте заявку</strong>
+                        <p>Заполните короткую форму на этой странице.</p>
+                    </li>
+                    <li class="stagger-item">
+                        <strong>Свяжитесь с нами</strong>
+                        <p>Мы уточним детали и ответим на вопросы.</p>
+                    </li>
+                    <li class="stagger-item">
+                        <strong>Начните пользоваться</strong>
+                        <p>Получите доступ к каталогу и предложениям.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ФОРМА -->
+        <section id="form">
+            <div class="container">
+                <div class="form-box reveal">
+                    <h2>Оставить заявку</h2>
+                    <p style="color:var(--muted)">Заполните форму — мы свяжемся с вами.</p>
+                    <form action="send.php" method="POST">
+                        <label>Имя *</label>
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        
+                        <label>Телефон *</label>
+                        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+                        
+                        <label>E-mail</label>
+                        <input type="email" name="email" placeholder="you@example.com">
+                        
+                        <label>Комментарий</label>
+                        <textarea name="message" rows="3" placeholder="Необязательно"></textarea>
+
+                        <div class="consent-row">
+                            <input id="consent" type="checkbox" required>
+                            <label for="consent">Я даю согласие на обработку моих персональных данных и принимаю условия Политики конфиденциальности.</label>
+                        </div>
+                        <button type="submit" class="btn magnetic">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="container">
+                <h2 class="reveal">Частые вопросы</h2>
+                <details class="reveal"><summary>Это бесплатно?</summary><p>Да, доступ к сайту и отправка заявки бесплатны.</p></details>
+                <details class="reveal"><summary>Как быстро со мной свяжутся?</summary><p>Обычно в течение рабочего дня.</p></details>
+                <details class="reveal"><summary>Что делать, если не приходит ответ?</summary><p>Напишите на <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a>.</p></details>
+            </div>
+        </section>
+    </main>
+
+    <!-- ПОДВАЛ (БЕЗ РЕКВИЗИТОВ) -->
+    <footer>
+        <div class="container">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <h4>Faberlic</h4>
+                    <p><strong>Независимый онлайн-консультант</strong></p>
+                    <p class="foot-desc">Официальный ресурс для оформления заказов Faberlic. Мы помогаем подобрать уход, оформить регистрацию и получить доступ к каталогу.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Документы и правовая информация</h4>
+                    <div class="foot-links">
+                        <a href="#" data-modal="terms">Пользовательское соглашение</a>
+                        <a href="#" data-modal="privacy">Политика конфиденциальности</a>
+                        <a href="#" data-modal="consent">Согласие на обработку ПД</a>
+                    </div>
+                </div>
+                <div class="foot-col">
+                    <h4>Связаться с нами</h4>
+                    <p style="margin-bottom: 16px;"><a href="mailto:Ninafaberlic1982@yandex.ru" style="font-weight: 600; color: var(--gold-2);">Ninafaberlic1982@yandex.ru</a></p>
+                    <p class="foot-desc">Напишите нам, если у вас есть вопросы по каталогу или оформлению заказа. Ваши данные защищены.</p>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span>© <span id="year"></span> Faberlic — мир возможностей. Все права защищены.</span>
+                <span>Сайт использует файлы cookie для улучшения работы.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- НАПОЛНЕННЫЕ МОДАЛЬНЫЕ ОКНА -->
+    
+    <!-- Политика конфиденциальности -->
+    <div class="modal-overlay" id="modal-privacy" role="dialog">
+        <div class="modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Политика конфиденциальности</h2>
+            <p class="modal-meta">Дата последнего обновления: 01.01.2026</p>
+            
+            <h3>1. Общие положения</h3>
+            <p>Настоящая Политика конфиденциальности (далее — Политика) действует в отношении всей информации, которую сайт <strong>faberliconline37.online</strong> (далее — Сайт) может получить о Пользователе во время использования Сайта.</p>
+            <p>Использование Сайта означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки его персональной информации.</p>
+            
+            <h3>2. Какие данные мы собираем</h3>
+            <p>Мы собираем только те данные, которые вы добровольно предоставляете через форму обратной связи:</p>
+            <ul>
+                <li>Имя (для персонализированного обращения);</li>
+                <li>Номер телефона (для оперативной связи);</li>
+                <li>Адрес электронной почты (для отправки чеков или уточнений);</li>
+                <li>Текст комментария (для понимания вашего запроса).</li>
+            </ul>
+            <p>Мы также автоматически собираем технические данные (IP-адрес, файлы cookie, тип браузера) для анализа удобства использования Сайта.</p>
+            
+            <h3>3. Цели обработки данных</h3>
+            <p>Ваши персональные данные используются исключительно для:</p>
+            <ul>
+                <li>Связи с вами для уточнения деталей заявки и консультации;</li>
+                <li>Оформления заказа и его доставки (если это требуется);</li>
+                <li>Предоставления доступа к актуальному каталогу продукции;</li>
+                <li>Улучшения качества обслуживания клиентов.</li>
+            </ul>
+            
+            <h3>4. Передача данных третьим лицам</h3>
+            <p><strong>Мы не продаем, не обмениваем и не передаем ваши персональные данные третьим лицам.</strong> Передача данных возможна только в случаях, предусмотренных законодательством РФ (например, по официальному запросу правоохранительных органов).</p>
+            
+            <h3>5. Защита информации</h3>
+            <p>Сайт использует современные протоколы шифрования (SSL/TLS) для защиты данных при передаче. Доступ к базе данных с заявками строго ограничен и защищен паролем. Мы принимаем все необходимые организационные и технические меры для защиты персональной информации от неправомерного доступа.</p>
+            
+            <p class="modal-footer-note">
+                По всем вопросам, связанным с обработкой персональных данных, вы можете обратиться по адресу: <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Пользовательское соглашение -->
+    <div class="modal-overlay" id="modal-terms" role="dialog">
+        <div class="modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Пользовательское соглашение</h2>
+            <p class="modal-meta">Дата последнего обновления: 01.01.2026</p>
+            
+            <h3>1. Предмет соглашения</h3>
+            <p>Настоящее Соглашение регулирует отношения между владельцем сайта <strong>faberliconline37.online</strong> (далее — Администрация) и любым лицом, использующим данный Сайт (далее — Пользователь).</p>
+            
+            <h3>2. Права и обязанности сторон</h3>
+            <p><strong>Пользователь обязуется:</strong></p>
+            <ul>
+                <li>Предоставлять достоверную информацию при заполнении форм;</li>
+                <li>Не использовать Сайт для противоправных действий;</li>
+                <li>Не пытаться нарушить работу программной части Сайта.</li>
+            </ul>
+            <p><strong>Администрация обязуется:</strong></p>
+            <ul>
+                <li>Обеспечивать работоспособность Сайта (за исключением времени на техобслуживание);</li>
+                <li>Обеспечивать конфиденциальность полученных данных (в соответствии с Политикой конфиденциальности);</li>
+                <li>Отвечать на запросы Пользователей в разумные сроки.</li>
+            </ul>
+            
+            <h3>3. Ограничение ответственности</h3>
+            <p>Сайт носит информационно-консультационный характер. Администрация не несет ответственности за возможные перебои в работе Сайта, вызванные действиями третьих лиц или сбоями на стороне провайдера.</p>
+            <p>Все материалы Сайта предоставляются «как есть». Администрация не гарантирует абсолютную точность и полноту информации, но прилагает все усилия для её актуализации.</p>
+            
+            <h3>4. Интеллектуальная собственность</h3>
+            <p>Все текстовые материалы, дизайн и элементы интерфейса Сайта являются собственностью Администрации или используются на законных основаниях. Копирование материалов без письменного согласия запрещено.</p>
+            
+            <p class="modal-footer-note">
+                Актуальная версия Соглашения всегда доступна на данной странице. Продолжая использовать Сайт, вы принимаете текущие условия.
+            </p>
+        </div>
+    </div>
+
+    <!-- Согласие на обработку ПД -->
+    <div class="modal-overlay" id="modal-consent" role="dialog">
+        <div class="modal">
+            <button class="modal-close" data-close>&times;</button>
+            <h2>Согласие на обработку персональных данных</h2>
+            <p class="modal-meta">Дата последнего обновления: 01.01.2026</p>
+            
+            <p>Я, субъект персональных данных (Пользователь), действуя свободно, своей волей и в своем интересе, даю согласие на обработку моих персональных данных оператору сайта <strong>faberliconline37.online</strong>.</p>
+            
+            <h3>1. Перечень данных</h3>
+            <p>Согласие дается на обработку следующих персональных данных:</p>
+            <ul>
+                <li>Фамилия, Имя (или только Имя);</li>
+                <li>Контактный номер телефона;</li>
+                <li>Адрес электронной почты;</li>
+                <li>Любая иная информация, которую я укажу в поле «Комментарий».</li>
+            </ul>
+            
+            <h3>2. Цели обработки</h3>
+            <p>Обработка данных осуществляется в целях:</p>
+            <ul>
+                <li>Установления со мной обратной связи;</li>
+                <li>Предоставления мне консультаций по продукции Faberlic;</li>
+                <li>Направления мне информации о новинках и акциях (при наличии отдельного запроса);</li>
+                <li>Оформления заказа и выполнения договорных обязательств.</li>
+            </ul>
+            
+            <h3>3. Действия с данными и срок действия</h3>
+            <p>Согласие дается на совершение следующих действий: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передача (предоставление, доступ), блокирование, удаление, уничтожение.</p>
+            <p><strong>Срок действия согласия:</strong> до момента его отзыва субъектом персональных данных. Я могу отозвать согласие в любой момент, направив письмо на адрес <a href="mailto:Ninafaberlic1982@yandex.ru">Ninafaberlic1982@yandex.ru</a>.</p>
+            
+            <p class="modal-footer-note">
+                <strong>Подтверждение:</strong> Нажимая галочку в форме на сайте, я подтверждаю, что ознакомлен с Политикой конфиденциальности и даю согласие на описанную обработку моих данных.
+            </p>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p class="cookie-text">Мы используем cookie для анализа удобства и корректной работы сайта. Подробнее — в <a href="#" data-modal="privacy">Политике конфиденциальности</a>.</p>
+        <div class="cookie-actions">
+            <button type="button" class="btn btn-ghost" id="cookieDecline">Отклонить</button>
+            <button type="button" class="btn" id="cookieAccept">Принять</button>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+
+        /* =========================================
+           1. ПРЕЛОАДЕР
+           ========================================= */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+                document.body.classList.add('loaded');
+            }, 600);
+        });
+
+        /* =========================================
+           2. КАСТОМНЫЙ КУРСОР
+           ========================================= */
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+        let mouseX = 0, mouseY = 0;
+        let outlineX = 0, outlineY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button, input, textarea, summary').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovering'));
+        });
+
+        /* =========================================
+           3. МАГНИТНЫЕ КНОПКИ
+           ========================================= */
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.magnetic').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        }
+
+        /* =========================================
+           4. 3D ПАРАЛЛАКС ФОТО
+           ========================================= */
+        const heroImg = document.getElementById('heroImg');
+        if (heroImg && window.matchMedia('(hover: hover)').matches) {
+            heroImg.addEventListener('mousemove', (e) => {
+                const rect = heroImg.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                heroImg.style.transform = `rotateX(${-y * 0.05}deg) rotateY(${x * 0.05}deg)`;
+            });
+            heroImg.addEventListener('mouseleave', () => {
+                heroImg.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        }
+
+        /* =========================================
+           5. АНИМАЦИИ ПОЯВЛЕНИЯ
+           ========================================= */
+        const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const staggerContainers = document.querySelectorAll('.stagger-container');
+        staggerContainers.forEach(container => {
+            const items = container.querySelectorAll('.stagger-item');
+            const staggerObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    items.forEach((item, index) => {
+                        setTimeout(() => item.classList.add('visible'), index * 150);
+                    });
+                    staggerObserver.unobserve(container);
+                }
+            }, { threshold: 0.1 });
+            staggerObserver.observe(container);
+        });
+
+        /* =========================================
+           6. ХЕДЕР
+           ========================================= */
+        window.addEventListener('scroll', () => {
+            document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* =========================================
+           7. ЧАСТИЦЫ
+           ========================================= */
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+        function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+        for (let i = 0; i < 60; i++) {
+            particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, r: Math.random() * 1.5 + 0.5, alpha: Math.random() * 0.5 + 0.1 });
+        }
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(233, 30, 99, ${p.alpha})`; ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        /* =========================================
+           8. МОДАЛЬНЫЕ ОКНА
+           ========================================= */
+        const overlays = document.querySelectorAll('.modal-overlay');
+        document.querySelectorAll('a[data-modal]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const ov = document.getElementById('modal-' + this.getAttribute('data-modal'));
+                if (ov) { ov.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            });
+        });
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', function () {
+                this.closest('.modal-overlay').classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+        overlays.forEach(ov => {
+            ov.addEventListener('click', function (e) {
+                if (e.target === ov) { ov.classList.remove('open'); document.body.style.overflow = ''; }
+            });
+        });
+
+        /* =========================================
+           9. COOKIE BANNER
+           ========================================= */
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookie_consent')) {
+            setTimeout(() => cookieBanner.classList.add('show'), 2000);
+        }
+        document.getElementById('cookieAccept').onclick = () => {
+            localStorage.setItem('cookie_consent', 'yes'); cookieBanner.classList.remove('show');
+        };
+        document.getElementById('cookieDecline').onclick = () => {
+            localStorage.setItem('cookie_consent', 'no'); cookieBanner.classList.remove('show');
+        };
+
+        /* =========================================
+           10. ГОД
+           ========================================= */
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
