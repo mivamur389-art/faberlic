@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://faberliconline37.online/sitemap.xml
